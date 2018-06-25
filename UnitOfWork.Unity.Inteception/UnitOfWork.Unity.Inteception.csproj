@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageLicenseUrl>https://github.com/semashkinvg/UnitOfWork.Unity.Inteception/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageReleaseNotes>See release notes here  https://github.com/semashkinvg/UnitOfWork.Unity.Inteception/blob/master/ReleaseNotes.md</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/semashkinvg/UnitOfWork.Unity.Inteception</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/semashkinvg/UnitOfWork.Unity.Inteception</RepositoryUrl>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageTags>UnitOfWork UoW Interception Unity IoC</PackageTags>
+    <PackageIconUrl>https://github.com/semashkinvg/UnitOfWork.Unity.Inteception/blob/master/default.png</PackageIconUrl>
+    <Description>https://raw.githubusercontent.com/semashkinvg/UnitOfWork.Unity.Inteception/master/README.md</Description>
   </PropertyGroup>
 
   <ItemGroup>
