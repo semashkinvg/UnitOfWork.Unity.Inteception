@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWork.Unity.Inteception", "UnitOfWork.Unity.Inteception\UnitOfWork.Unity.Inteception.csproj", "{D54CEA02-240C-4BD5-8C79-69FD121D9802}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWork.Unity.Inteception.Tests", "UnitOfWork.Unity.Inteception.Tests\UnitOfWork.Unity.Inteception.Tests.csproj", "{FA3EEB3A-0A14-47E7-AF66-3F51D3964BE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D54CEA02-240C-4BD5-8C79-69FD121D9802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54CEA02-240C-4BD5-8C79-69FD121D9802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54CEA02-240C-4BD5-8C79-69FD121D9802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54CEA02-240C-4BD5-8C79-69FD121D9802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA3EEB3A-0A14-47E7-AF66-3F51D3964BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3EEB3A-0A14-47E7-AF66-3F51D3964BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3EEB3A-0A14-47E7-AF66-3F51D3964BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3EEB3A-0A14-47E7-AF66-3F51D3964BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D36352DE-E27C-4580-BBA4-E9B6B34E9B70}
+	EndGlobalSection
+EndGlobal
