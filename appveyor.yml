@@ -6,9 +6,11 @@ before_build:
 
 build_script:
   - dotnet build .\UnitOfWork.Unity.Inteception.sln
-
-test_script:
-  - dotnet test .\UnitOfWork.Unity.Inteception.Tests\
+test:
+  # only assemblies to test
+  assemblies:
+    only:
+      - '**\*.Tests.dll'
   
 artifacts:
   - path: UnitOfWork.Unity.Inteception\bin\Release
