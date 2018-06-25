@@ -5,7 +5,13 @@ before_build:
   - dotnet restore
 
 build_script:
-  - dotnet build .\Bitmex.NET.UnitTests.sln
+  - dotnet build .\UnitOfWork.Unity.Inteception.sln
 
 test_script:
-  - dotnet test .\Bitmex.NET.UnitTests.Tests\
+  - dotnet test .\UnitOfWork.Unity.Inteception.Tests\
+  
+artifacts:
+  - path: UnitOfWork.Unity.Inteception\bin\Release
+    name: UnitOfWork.Unity.Inteception_bin
+    
+  - path: UnitOfWork.Unity.Inteception\bin\*.nupkg
