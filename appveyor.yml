@@ -1,6 +1,4 @@
 configuration: Release
-image:
-    - Visual Studio 2017 RC
 
 # scripts to run before build
 before_build:
@@ -30,4 +28,4 @@ artifacts:
   - path: UnitOfWork.Unity.Inteception\bin\Release
     name: UnitOfWork.Unity.Inteception_bin
     
-  - path: UnitOfWork.Unity.Inteception\bin\Release\*.nupkg
+  - path: '**\*.nupkg'
