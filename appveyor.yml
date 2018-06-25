@@ -28,4 +28,4 @@ artifacts:
   - path: UnitOfWork.Unity.Inteception\bin\Release
     name: UnitOfWork.Unity.Inteception_bin
     
-  - path: '**\*.nupkg'
+  - path: '**\UnitOfWork.Unity.Inteception\bin\Release\*.nupkg'
