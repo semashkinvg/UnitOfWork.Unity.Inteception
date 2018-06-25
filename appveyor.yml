@@ -1,14 +1,11 @@
-before_build:
-  - nuget restore
-test:
-  assemblies:
-    only:
-      - Bitmex.NET.UnitTests.dll
-after_build:
-  - nuget pack %APPVEYOR_BUILD_FOLDER%\UnitOfWork.Unity.Inteception\UnitOfWork.Unity.Inteception.csproj -Properties Configuration=Release -Build -OutputDirectory %APPVEYOR_BUILD_FOLDER%\UnitOfWork.Unity.Inteception\bin
+configuration: Release
 
-artifacts:
-  - path: UnitOfWork.Unity.Inteception\bin\Release
-    name: UnitOfWork.Unity.Inteception_bin
-    
-  - path: UnitOfWork.Unity.Inteception\bin\*.nupkg
+# scripts to run before build
+before_build:
+  - dotnet restore
+
+build_script:
+  - dotnet build .\Bitmex.NET.UnitTests.sln
+
+test_script:
+  - dotnet test .\Bitmex.NET.UnitTests.Tests\
