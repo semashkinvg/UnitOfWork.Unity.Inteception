@@ -10,10 +10,14 @@ using Unity.Interception.PolicyInjection.Pipeline;
 
 namespace UnitOfWork.Unity.Inteception
 {
-    public class UoWInterceptionBehavior<TUoW> : IInterceptionBehavior
+    public abstract class UoWInterceptionBehavior
+    {
+        internal static readonly ILog Log = LogProvider.GetCurrentClassLogger();
+    }
+
+    public class UoWInterceptionBehavior<TUoW> : UoWInterceptionBehavior, IInterceptionBehavior
         where TUoW : IUnitOfWork
     {
-        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
         private readonly IUnityContainer _unityContainer;
 
         private readonly ConcurrentDictionary<Type, Func<Task, IMethodInvocation, Task>>
@@ -55,22 +59,41 @@ namespace UnitOfWork.Unity.Inteception
         private async Task<T> DoCreateGenericWrapperTask<T>(Task<T> task,
             IMethodInvocation input)
         {
-            return await task.ContinueWith(a =>
+            TUoW uow = ResolveUoW();
+            try
             {
-                ProcessResult(input, a.Exception);
-                return a.Result;
-            }).ConfigureAwait(false);
+                var result = await task;
+                Log.Debug($"{input.MethodBase.Name} Commit transaction");
+                uow.Commit();
+                return result;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, $"{input.MethodBase.Name} throws exception");
+                Log.Debug($"{input.MethodBase.Name} Rollback transaction");
+                uow.Rollback();
+                throw;
+            }
         }
 
         private async Task CreateWrapperTask(Task task,
             IMethodInvocation input)
         {
-            await task.ContinueWith(a =>
+            TUoW uow = ResolveUoW();
+            try
             {
-                ProcessResult(input, a.Exception);
-            }).ConfigureAwait(false);
-            Log.Info("Successfully finished async operation {0}",
-                input.MethodBase.Name);
+                await task;
+                Log.Debug($"{input.MethodBase.Name} Commit transaction");
+                uow.Commit();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, $"{input.MethodBase.Name} throws exception");
+                Log.Debug($"{input.MethodBase.Name} Rollback transaction");
+                uow.Rollback();
+                throw;
+            }
+
         }
 
         private Func<Task, IMethodInvocation, Task> GetWrapperCreator(Type taskType)

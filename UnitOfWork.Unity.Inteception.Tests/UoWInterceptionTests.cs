@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 using System.Threading.Tasks;
@@ -70,14 +71,18 @@ namespace UnitOfWork.Unity.Inteception.Tests
             {
                 CallAsync(service.AsyncMethodWithResultThrowsException).Wait();
             }
-            catch
+            catch (AggregateException e)
             {
-                // ignored
+                // Assert
+                e.InnerException.Should().NotBeNull();
+                e.InnerException.Message.Should().Be("unique key violation");
+                _unitOfWork.Received(1).Rollback();
+                _unitOfWork.DidNotReceive().Commit();
+                return;
             }
 
-            // Assert
-            _unitOfWork.Received(1).Rollback();
-            _unitOfWork.DidNotReceive().Commit();
+            Assert.Fail("The exception wasn't rethrown");
+
         }
 
         [TestMethod]
@@ -117,14 +122,16 @@ namespace UnitOfWork.Unity.Inteception.Tests
             {
                 service.MethodWithResultThrownsException();
             }
-            catch
+            catch (Exception e)
             {
-                // ignored
+                // Assert
+                e.Message.Should().Be("unique key violation");
+                _unitOfWork.Received(1).Rollback();
+                _unitOfWork.DidNotReceive().Commit();
+                return;
             }
 
-            // Assert
-            _unitOfWork.Received(1).Rollback();
-            _unitOfWork.DidNotReceive().Commit();
+            Assert.Fail("The exception wasn't rethrown");
         }
 
         private async Task CallAsync(Func<Task> action)
