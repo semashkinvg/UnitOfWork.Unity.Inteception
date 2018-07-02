@@ -1,4 +1,4 @@
-# UnitOfWork.Unity.Inteception
+# UnitOfWork.Unity.Inteception [![Build Status](https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true)](https://ci.appveyor.com/project/semashkinvg/unitofwork-unity-inteception)
 The implementation of Unit-Of-Work pattern behaviour using unity interception 
 
 ## Example
